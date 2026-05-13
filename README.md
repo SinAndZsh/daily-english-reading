@@ -4,7 +4,7 @@
 
 ## 🌐 在线访问
 
-**GitHub Pages**: https://[你的用户名].github.io/daily-english-reading/
+**GitHub Pages**: https://SinAndZsh.github.io/daily-english-reading/
 
 ## 📖 内容来源
 
