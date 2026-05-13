@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日外刊精读 - The Atlantic</title>
+    <title>📚 每日外刊精读 - 考研英语备考</title>
     <style>
         * {
             margin: 0;
@@ -13,271 +13,182 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
+            color: #fff;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
             text-align: center;
+            margin-bottom: 50px;
         }
         
         .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 42px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
         }
         
-        .header .meta {
-            opacity: 0.9;
+        .header p {
+            color: #a0a0a0;
+            font-size: 16px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #888;
+            margin-top: 5px;
             font-size: 14px;
         }
         
-        .content {
-            padding: 30px;
-        }
-        
-        .summary-box {
-            background: #f8f9fa;
+        .section-title {
+            font-size: 24px;
+            margin: 40px 0 25px;
+            padding-left: 15px;
             border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 0 10px 10px 0;
+            color: #fff;
         }
         
-        .summary-box h3 {
-            color: #667eea;
+        .article-list {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .article-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+            border-color: #667eea;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .article-date {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .article-source {
+            color: #ffd700;
+            font-size: 13px;
             margin-bottom: 10px;
         }
         
         .article-title {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        
-        .article-content {
-            font-size: 17px;
-            line-height: 1.9;
-            color: #444;
-            margin-bottom: 30px;
-        }
-        
-        .word {
-            color: #667eea;
-            font-weight: 600;
-            cursor: pointer;
-            border-bottom: 2px dotted #667eea;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .word:hover {
-            background: #667eea;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border-bottom: none;
-        }
-        
-        .tooltip {
-            position: fixed;
-            background: #333;
-            color: white;
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 14px;
-            max-width: 300px;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none;
-            line-height: 1.6;
-        }
-        
-        .tooltip::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #333;
-        }
-        
-        .tooltip .word-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 5px;
-        }
-        
-        .tooltip .phonetic {
-            color: #aaa;
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-        
-        .tooltip .meaning {
-            color: #fff;
-            margin-bottom: 5px;
-        }
-        
-        .tooltip .example {
-            color: #ccc;
-            font-size: 12px;
-            border-top: 1px solid #555;
-            padding-top: 5px;
-            margin-top: 5px;
-        }
-        
-        .vocab-section {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 30px;
-        }
-        
-        .vocab-section h3 {
-            color: #667eea;
-            margin-bottom: 20px;
             font-size: 20px;
-        }
-        
-        .vocab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .vocab-card {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-        
-        .vocab-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
-        }
-        
-        .vocab-card .v-word {
-            font-weight: bold;
-            color: #667eea;
-            font-size: 16px;
-        }
-        
-        .vocab-card .v-phonetic {
-            color: #888;
-            font-size: 13px;
-            margin: 3px 0;
-        }
-        
-        .vocab-card .v-meaning {
-            color: #333;
-            font-size: 14px;
-        }
-        
-        .difficult-sentences {
-            margin-top: 30px;
-        }
-        
-        .difficult-sentences h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        .sentence-card {
-            background: #fff5f5;
-            border-left: 4px solid #e53e3e;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 0 10px 10px 0;
-        }
-        
-        .sentence-card .original {
-            font-style: italic;
-            color: #444;
-            margin-bottom: 10px;
-        }
-        
-        .sentence-card .analysis {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-        
-        .practice-section {
-            margin-top: 30px;
-            padding: 25px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-        }
-        
-        .practice-section h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        .question {
-            margin-bottom: 20px;
-        }
-        
-        .question p {
             font-weight: 600;
             margin-bottom: 10px;
-            color: #333;
+            color: #fff;
         }
         
-        .options label {
-            display: block;
-            padding: 10px;
-            margin: 5px 0;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .article-summary {
+            color: #a0a0a0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
         
-        .options label:hover {
-            background: #667eea;
-            color: white;
+        .article-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         
-        .tips-box {
-            margin-top: 30px;
-            padding: 20px;
-            background: #e6fffa;
-            border-left: 4px solid #38b2ac;
-            border-radius: 0 10px 10px 0;
+        .tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
         }
         
-        .tips-box h4 {
-            color: #38b2ac;
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state h3 {
+            font-size: 20px;
             margin-bottom: 10px;
+            color: #888;
         }
         
-        .tips-box ul {
-            margin-left: 20px;
-            color: #444;
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
         
-        .tips-box li {
-            margin: 8px 0;
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                padding: 15px 20px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -285,179 +196,93 @@
     <div class="container">
         <div class="header">
             <h1>📚 每日外刊精读</h1>
-            <div class="meta">来源：The Atlantic | 日期：2026年5月13日 | 考研词汇专项训练</div>
+            <p>考研英语备考专用 | 每天精选一篇外刊，配有详细词汇注释和长难句解析</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="article-count">1</div>
+                    <div class="stat-label">篇文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">大来源</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">词汇量/篇</div>
+                </div>
+            </div>
         </div>
         
-        <div class="content">
-            <div class="summary-box">
-                <h3>📋 文章大意</h3>
-                <p>本文探讨了人工智能如何改变现代工作场所，分析了自动化对就业市场的影响，以及人类员工如何适应这一技术变革。文章指出，虽然AI会取代部分工作，但也会创造新的就业机会，关键在于劳动者如何提升技能以适应新时代的需求。</p>
-            </div>
-            
-            <h2 class="article-title">How AI Is Reshaping the Future of Work</h2>
-            
-            <div class="article-content">
-                <p>
-                The <span class="word" data-word="proliferation" data-phonetic="/prəˌlɪfəˈreɪʃn/" data-meaning="n. 激增，扩散" data-example="The proliferation of smartphones has changed how we communicate.">proliferation</span> of artificial intelligence in the workplace is no longer a <span class="word" data-word="distant" data-phonetic="/ˈdɪstənt/" data-meaning="adj. 遥远的；久远的" data-example="The sound came from a distant village.">distant</span> <span class="word" data-word="prospect" data-phonetic="/ˈprɒspekt/" data-meaning="n. 前景，可能性" data-example="There is no prospect of a settlement of the dispute.">prospect</span>—it is happening now, and at a pace that has caught many industries off guard. From <span class="word" data-word="automated" data-phonetic="/ˈɔːtəmeɪtɪd/" data-meaning="adj. 自动化的" data-example="The factory is fully automated.">automated</span> customer service chatbots to <span class="word" data-word="sophisticated" data-phonetic="/səˈfɪstɪkeɪtɪd/" data-meaning="adj. 复杂的；精密的；老练的" data-example="She is a sophisticated businesswoman.">sophisticated</span> data analysis tools, AI technologies are <span class="word" data-word="fundamentally" data-phonetic="/ˌfʌndəˈmentəli/" data-meaning="adv. 根本上，完全地" data-example="The two approaches are fundamentally different.">fundamentally</span> altering how work gets done.
-                </p>
-                
-                <p>
-                Yet this <span class="word" data-word="transformation" data-phonetic="/ˌtrænsfəˈmeɪʃn/" data-meaning="n. 转变，变革" data-example="The transformation of the economy has been remarkable.">transformation</span> need not be <span class="word" data-word="synonymous" data-phonetic="/sɪˈnɒnɪməs/" data-meaning="adj. 同义的；等同于...的" data-example="His name has become synonymous with courage.">synonymous</span> with job losses. History shows that technological <span class="word" data-word="revolutions" data-phonetic="/ˌrevəˈluːʃnz/" data-meaning="n. 革命，剧变" data-example="The industrial revolution changed society forever.">revolutions</span> typically create more employment opportunities than they destroy, albeit in different <span class="word" data-word="sectors" data-phonetic="/ˈsektəz/" data-meaning="n. 行业，部门" data-example="The private sector has created many jobs.">sectors</span>. The challenge lies in ensuring that workers can <span class="word" data-word="transition" data-phonetic="/trænˈzɪʃn/" data-meaning="v./n. 过渡，转变" data-example="The company is in transition.">transition</span> smoothly into these new roles.
-                </p>
-                
-                <p>
-                Companies that <span class="word" data-word="embrace" data-phonetic="/ɪmˈbreɪs/" data-meaning="v. 欣然接受；拥抱" data-example="We should embrace new technology.">embrace</span> AI while investing in their human capital will likely <span class="word" data-word="emerge" data-phonetic="/ɪˈmɜːdʒ/" data-meaning="v. 出现，显现；脱颖而出" data-example="The truth began to emerge.">emerge</span> as leaders in their fields. Those that <span class="word" data-word="neglect" data-phonetic="/nɪˈɡlekt/" data-meaning="v. 忽视，忽略" data-example="Don't neglect your health.">neglect</span> the human element risk creating a <span class="word" data-word="workforce" data-phonetic="/ˈwɜːrkfɔːrs/" data-meaning="n. 劳动力，员工队伍" data-example="We need to train our workforce.">workforce</span> that is <span class="word" data-word="ill-equipped" data-phonetic="/ˌɪl ɪˈkwɪpt/" data-meaning="adj. 装备不良的；准备不足的" data-example="They were ill-equipped for the journey.">ill-equipped</span> for the future.
-                </p>
-            </div>
-            
-            <div class="vocab-section">
-                <h3>📝 核心词汇表 (考研高频词)</h3>
-                <div class="vocab-grid">
-                    <div class="vocab-card">
-                        <div class="v-word">proliferation</div>
-                        <div class="v-phonetic">/prəˌlɪfəˈreɪʃn/</div>
-                        <div class="v-meaning">n. 激增，扩散</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="v-word">sophisticated</div>
-                        <div class="v-phonetic">/səˈfɪstɪkeɪtɪd/</div>
-                        <div class="v-meaning">adj. 复杂的；精密的；老练的</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="v-word">fundamentally</div>
-                        <div class="v-phonetic">/ˌfʌndəˈmentəli/</div>
-                        <div class="v-meaning">adv. 根本上，完全地</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="v-word">transformation</div>
-                        <div class="v-phonetic">/ˌtrænsfəˈmeɪʃn/</div>
-                        <div class="v-meaning">n. 转变，变革</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="v-word">synonymous</div>
-                        <div class="v-phonetic">/sɪˈnɒnɪməs/</div>
-                        <div class="v-meaning">adj. 同义的；等同于...的</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="v-word">transition</div>
-                        <div class="v-phonetic">/trænˈzɪʃn/</div>
-                        <div class="v-meaning">v./n. 过渡，转变</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="v-word">embrace</div>
-                        <div class="v-phonetic">/ɪmˈbreɪs/</div>
-                        <div class="v-meaning">v. 欣然接受；拥抱</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="v-word">emerge</div>
-                        <div class="v-phonetic">/ɪˈmɜːdʒ/</div>
-                        <div class="v-meaning">v. 出现，显现；脱颖而出</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="difficult-sentences">
-                <h3>🔍 长难句解析</h3>
-                <div class="sentence-card">
-                    <div class="original">"History shows that technological revolutions typically create more employment opportunities than they destroy, albeit in different sectors."</div>
-                    <div class="analysis">
-                        <strong>结构分析：</strong><br>
-                        • 主句：History shows...<br>
-                        • 宾语从句：that technological revolutions...<br>
-                        • 比较结构：more...than...<br>
-                        • 让步状语：albeit in different sectors（尽管是在不同行业）<br><br>
-                        <strong>翻译：</strong>历史表明，技术革命通常创造的就业机会多于它们摧毁的，尽管这些机会出现在不同的行业。
-                    </div>
-                </div>
-                <div class="sentence-card">
-                    <div class="original">"Companies that embrace AI while investing in their human capital will likely emerge as leaders in their fields."</div>
-                    <div class="analysis">
-                        <strong>结构分析：</strong><br>
-                        • 主语：Companies<br>
-                        • 定语从句：that embrace AI...（修饰companies）<br>
-                        • 时间状语：while investing in their human capital<br>
-                        • 谓语：will emerge as<br><br>
-                        <strong>翻译：</strong>那些在接受人工智能的同时投资于人力资本的公司，很可能会成为各自领域的领导者。
-                    </div>
-                </div>
-            </div>
-            
-            <div class="practice-section">
-                <h3>✏️ 阅读理解练习</h3>
-                <div class="question">
-                    <p>1. 根据文章，作者对AI在工作场所的普及持什么态度？</p>
-                    <div class="options">
-                        <label>A. 担忧，认为会导致大规模失业</label>
-                        <label>B. 乐观，认为会创造更多就业机会</label>
-                        <label>C. 中立，认为利弊取决于企业如何应对</label>
-                        <label>D. 悲观，认为人类无法适应这种变化</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>2. "albeit" 在文中的含义最接近：</p>
-                    <div class="options">
-                        <label>A. however（然而）</label>
-                        <label>B. therefore（因此）</label>
-                        <label>C. moreover（此外）</label>
-                        <label>D. otherwise（否则）</label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tips-box">
-                <h4>💡 考研阅读技巧</h4>
-                <ul>
-                    <li><strong>关注转折词：</strong>文中"Yet"、"albeit"等词往往引出作者真正想表达的观点</li>
-                    <li><strong>识别观点态度：</strong>注意"need not be"、"risk"等表达，它们暗示作者的立场</li>
-                    <li><strong>长难句突破：</strong>先找主干（主谓宾），再看修饰成分</li>
-                    <li><strong>词汇积累：</strong>本文中proliferation、transformation等是考研高频词汇</li>
-                </ul>
-            </div>
+        <h2 class="section-title">📅 文章列表</h2>
+        
+        <div class="article-list" id="article-list">
+            <!-- 文章将通过JavaScript动态加载 -->
+        </div>
+        
+        <div class="footer">
+            <p>📖 数据来源：纽约时报 | 大西洋月刊 | 基督教科学箴言报 | 经济学人 | 卫报</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/SinAndZsh/daily-english-reading" target="_blank">GitHub 仓库</a>
+                | 每天早上 8:00 自动更新
+            </p>
         </div>
     </div>
     
-    <div class="tooltip" id="tooltip"></div>
-    
     <script>
-        const tooltip = document.getElementById('tooltip');
-        const words = document.querySelectorAll('.word');
-        
-        words.forEach(word => {
-            word.addEventListener('click', function(e) {
-                const wordData = this.dataset;
-                tooltip.innerHTML = `
-                    <div class="word-title">${wordData.word}</div>
-                    <div class="phonetic">${wordData.phonetic}</div>
-                    <div class="meaning">${wordData.meaning}</div>
-                    <div class="example">"${wordData.example}"</div>
-                `;
-                
-                const rect = this.getBoundingClientRect();
-                tooltip.style.display = 'block';
-                
-                // Calculate position relative to viewport
-                let left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2);
-                let top = rect.top - tooltip.offsetHeight - 10;
-                
-                // Boundary checks
-                if (left < 10) left = 10;
-                if (left + tooltip.offsetWidth > window.innerWidth - 10) {
-                    left = window.innerWidth - tooltip.offsetWidth - 10;
-                }
-                if (top < 10) {
-                    top = rect.bottom + 10;
-                }
-                
-                tooltip.style.left = left + 'px';
-                tooltip.style.top = top + 'px';
-            });
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (!e.target.classList.contains('word')) {
-                tooltip.style.display = 'none';
+        // 文章列表配置 - 系统会自动更新此列表
+        const articles = [
+            {
+                date: '2026年5月13日',
+                dateShort: '20260513',
+                source: 'The Atlantic',
+                sourceZh: '大西洋月刊',
+                title: 'How AI Is Reshaping the Future of Work',
+                titleZh: '人工智能如何重塑工作的未来',
+                summary: '本文探讨了人工智能如何改变现代工作场所，分析了自动化对就业市场的影响，以及人类员工如何适应这一技术变革。',
+                tags: ['人工智能', '职场', '考研核心词汇'],
+                filename: '20260513_TheAtlantic_AI_Reading.html'
             }
-        });
+        ];
+        
+        // 渲染文章列表
+        function renderArticles() {
+            const container = document.getElementById('article-list');
+            
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>📭 暂无文章</h3>
+                        <p>明天早上8点将会更新第一篇文章</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 按日期倒序排列（最新的在前）
+            const sortedArticles = [...articles].sort((a, b) => 
+                b.dateShort.localeCompare(a.dateShort)
+            );
+            
+            container.innerHTML = sortedArticles.map(article => `
+                <a href="${article.filename}" class="article-card" target="_blank">
+                    <div class="article-date">📅 ${article.date}</div>
+                    <div class="article-source">📰 ${article.sourceZh} (${article.source})</div>
+                    <div class="article-title">${article.titleZh}</div>
+                    <div class="article-title" style="font-size: 16px; color: #aaa;">${article.title}</div>
+                    <div class="article-summary">${article.summary}</div>
+                    <div class="article-tags">
+                        ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </a>
+            `).join('');
+            
+            // 更新文章计数
+            document.getElementById('article-count').textContent = articles.length;
+        }
+        
+        // 页面加载时渲染
+        renderArticles();
     </script>
 </body>
 </html>
